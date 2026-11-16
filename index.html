@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101c25">
+<meta name="description" content="Carry a little light a long way. An original, offline precision platformer.">
+<title>Jump Tower — Carry a little light</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316262b'/%3E%3Cpath d='M12 15h8v13h-8z' fill='%2379a781'/%3E%3Cpath d='M14 5h4v9h-4zM11 8h10v4H11z' fill='%23e8c58c'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<div id="stage" class="stage">
+<canvas id="game" width="480" height="300" aria-label="Jump Tower platform game. Keyboard controls: A and D to move, hold Space to charge, release to jump. Press Escape to pause." tabindex="0"></canvas>
+<div id="hud" class="hud" hidden>
+ <div class="hud-top"><div><span id="hud-area" class="eyebrow">01 / THE WELL</span><h2 id="hud-region">Mosslight Village</h2></div><button id="pause-button" class="icon-button" aria-label="Pause game" title="Pause · Escape">Ⅱ</button></div>
+ <div id="region-toast" class="region-toast" aria-live="polite"></div>
+ <div class="altitude-track" aria-hidden="true"><span>✦</span><div><i id="altitude-fill"></i><b id="altitude-marker"></b></div><span>·</span></div>
+ <div class="hud-bottom"><div class="height-number"><strong id="hud-height">0</strong><span>m <small>HEIGHT</small></span></div><div class="hud-stats"><span>BEST <b id="hud-best">0 m</b></span><span>TIME <b id="hud-time">00:00</b></span><span>JUMPS <b id="hud-jumps">0</b></span></div></div>
+ <div id="tutorial" class="tutorial"><span><kbd>A</kbd> <kbd>D</kbd> move</span><span><kbd>SPACE</kbd> hold, then release</span><span>Choose direction as you release.</span></div>
+</div>
+<div id="screen" class="screen" aria-live="off"></div>
+<div id="notice" class="notice" role="status" hidden></div>
+</div>
+</main>
+<script src="js/config.js"></script>
+<script src="js/world.js"></script>
+<script src="js/physics.js"></script>
+<script src="js/save.js"></script>
+<script src="js/session.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/camera.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

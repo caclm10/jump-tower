@@ -1,0 +1,22 @@
+{
+  "browser": "159.0.8154.6",
+  "offline": true,
+  "checks": [
+    "index.html: offline file launch, complete menus, keyboard charge/landing, pause/resume, HUD, restart, save/continue, persistent settings",
+    "dist/index.html: offline file launch, complete menus, keyboard charge/landing, pause/resume, HUD, restart, save/continue, persistent settings",
+    "all 300 jumps replay to a rendered victory screen and completion persists",
+    "game fills the viewport without headers, footers or outer margins at four desktop resolutions",
+    "reset progress requires confirmation and removes the saved run",
+    "corrupted browser save loads safely",
+    "no uncaught JavaScript errors or network requests in offline source/distribution tests",
+    "game remains playable when storage and Web Audio are unavailable"
+  ],
+  "routeReplay": {
+    "mode": "victory",
+    "jumps": 300,
+    "highest": 2004,
+    "steps": 56602
+  },
+  "errors": [],
+  "externalRequests": []
+}

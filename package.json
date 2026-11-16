@@ -1,0 +1,12 @@
+{
+  "name": "jump-tower",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An original offline precision platformer",
+  "scripts": {
+    "test": "node --test tests/run.js",
+    "validate": "node tools/validate-levels.js",
+    "build": "node tools/build.js",
+    "test:browser": "node tests/browser.cjs"
+  }
+}

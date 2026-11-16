@@ -1,0 +1,10 @@
+# Local tools, credentials, and development dependencies
+.agents/
+.codex/
+.aws/
+.ssh/
+.env
+.env.*
+node_modules/
+*.log
+.DS_Store

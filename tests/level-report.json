@@ -1,0 +1,12 @@
+{
+  "optionalJumps": 12,
+  "verifiedShortcuts": 3,
+  "areas": 50,
+  "regions": 10,
+  "platforms": 310,
+  "verifiedJumps": 300,
+  "physicsHz": 120,
+  "minimumLandingEdgeClearance": 4.861111111111541,
+  "simulatedSeconds": 471.6833333330687,
+  "victory": true
+}
