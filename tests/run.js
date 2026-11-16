@@ -30,3 +30,21 @@ check('entire tower replays to victory with actual physics and no teleportation'
 check('source entry point uses only local classic scripts and assets',()=>{const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');assert(!/type=["']module|(?:src|href)=["']https?:\/\/|fetch\(/.test(html));for(const [,ref] of html.matchAll(/(?:src|href)="([^"]+)"/g)){if(ref.startsWith('data:'))continue;assert(fs.existsSync(path.join(__dirname,'..',ref)),ref);}for(const f of fs.readdirSync('js'))assert(!/\bfetch\s*\(|XMLHttpRequest|\bimport\s/.test(fs.readFileSync('js/'+f,'utf8')));});
 
 check('fall counter includes short setbacks but excludes ordinary jump descent',()=>{const s=new JT.Session();s.restart();const q=W.platforms[8];s.player=P.player(q.x+q.w+3,q.y-20);s.player.grounded=false;for(let i=0;i<240&&!s.player.grounded;i++)s.tick(idle);assert.equal(s.stats.falls,1);const a=new JT.Session();a.restart();a.player=P.player(1,C.floor-20);P.launch(a.player,0,0);for(let i=0;i<100;i++)a.tick(idle);assert.equal(a.stats.falls,0);});
+
+check('mobile camera keeps maximum jumps and terminal falls above touch controls',()=>{
+ const old={...JT.View};
+ try{
+  for(const height of [165,222,1040]){
+   JT.View.height=height;JT.View.safeBottom=height<300?48:106;
+   const c=new JT.Camera(),p=P.player(1,4000);p.grounded=false;c.snap(p);P.launch(p,C.maxCharge,0);
+   for(let i=0;i<2000&&!p.grounded;i++){
+    P.step(p,idle,C.step);c.tick(p,C.step);
+    const relative=p.y-c.y;
+    assert(relative>=0,'player above viewport at height '+height);
+    assert(relative+p.h<c.visibleHeight(),'player behind touch controls at height '+height);
+    assert(c.y>=0&&c.y<=c.maxY());
+   }
+   assert(p.grounded);
+  }
+ }finally{Object.assign(JT.View,old);}
+});

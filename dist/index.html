@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101c25">
 <meta name="description" content="Carry a little light a long way. An original, offline precision platformer.">
 <title>Jump Tower — Carry a little light</title>
@@ -15,6 +15,20 @@
 .title-menu{top:calc(25 * var(--unit))}.title-menu h1{font-size:calc(37 * var(--unit));margin:calc(12 * var(--unit)) 0 calc(10 * var(--unit))}.title-menu h1 span{font-size:calc(44 * var(--unit))}.title-menu .tagline{font-size:calc(10 * var(--unit));margin:calc(10 * var(--unit)) 0 calc(9 * var(--unit))}.title-menu .description{font-size:calc(6.2 * var(--unit));margin-bottom:calc(10 * var(--unit));max-width:calc(205 * var(--unit))}.title-menu .button{min-height:calc(25 * var(--unit));padding:calc(6 * var(--unit)) calc(10 * var(--unit));font-size:calc(7 * var(--unit))}.title-menu .button-row{margin:calc(4 * var(--unit)) 0}.title-menu .text-button{padding:calc(3 * var(--unit)) 0}.hud-bottom{background:linear-gradient(0deg,#112530dd,#11253099);padding:calc(7 * var(--unit)) calc(8 * var(--unit));left:calc(10 * var(--unit));right:calc(10 * var(--unit));bottom:calc(7 * var(--unit));border-top:1px solid #bfd1b822}
 /* All menu actions stay visible within the game frame at desktop sizes. */
 .panel{width:calc(290 * var(--unit));padding:calc(14 * var(--unit))}.panel h2{font-size:calc(23 * var(--unit));margin:calc(4 * var(--unit)) 0 calc(8 * var(--unit))}.panel p{font-size:calc(6.5 * var(--unit));line-height:1.65;margin:calc(6 * var(--unit)) 0 calc(10 * var(--unit))}.panel .button{min-height:calc(25 * var(--unit));padding:calc(6 * var(--unit)) calc(10 * var(--unit));margin-top:calc(4 * var(--unit))}.control{font-size:calc(6.5 * var(--unit));margin:calc(8 * var(--unit)) 0}.setting{margin:calc(10 * var(--unit)) 0}.rule{margin:calc(9 * var(--unit)) 0}.victory-panel{width:calc(300 * var(--unit))}.victory-panel .victory-symbol{font-size:calc(16 * var(--unit));margin-bottom:calc(3 * var(--unit))}.victory-panel h2{font-size:calc(22 * var(--unit))}.victory-panel .run-stat{font-size:calc(7 * var(--unit));line-height:1.9}.victory-panel .rule{margin:calc(8 * var(--unit)) 0}
+/* Touch controls are independent of the HUD and never cover the camera's play area. */
+.stage{--touch-reserve:84px}.touch-controls{position:absolute;z-index:2;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px max(14px,env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));pointer-events:none;background:linear-gradient(0deg,#10232bf2,#10232b99);border-top:1px solid #c5d2b822;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.touch-directions{display:flex;gap:10px}.touch-button{position:relative;pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;width:60px;height:60px;border:1px solid #93b29b77;border-bottom:3px solid #708c77;border-radius:8px;background:#243e44ed;color:#e8e3ce;font-size:24px;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;-webkit-tap-highlight-color:transparent}.touch-button.pressed{background:#698572;border-color:#ebd4a0;transform:translateY(1px)}.touch-pause{width:44px;height:44px;font-size:20px;background:#172d37d9}.touch-jump{width:116px;flex-direction:column;gap:4px;font-size:16px;letter-spacing:1.2px;background:#d8b77d;color:#203338;border-color:#e8ce9d;border-bottom-color:#a98757}.touch-jump small{font-size:8px;letter-spacing:.5px}.touch-jump i{position:absolute;bottom:0;left:0;height:4px;width:var(--charge,0%);background:#fff2c7}.touch-jump.pressed{background:#f0d59e}.mobile-guide,.mobile-controls{display:none}canvas{touch-action:none}
+body.touch-device #pause-button{display:none}body.touch-device .hud-top{top:max(12px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right))}body.touch-device .hud-top .eyebrow{font-size:9px;letter-spacing:.7px}body.touch-device .hud h2{font-size:19px;margin:4px 0}body.touch-device .hud-bottom{bottom:calc(var(--touch-reserve) + env(safe-area-inset-bottom) + 6px);left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));padding:6px 10px;background:#112530b3}body.touch-device .height-number strong{font-size:28px}body.touch-device .height-number span{font-size:11px}body.touch-device .height-number small{font-size:7px}body.touch-device .hud-stats{font-size:7px;gap:12px}body.touch-device .hud-stats b{font-size:11px;margin-top:3px}body.touch-device .altitude-track{display:none}body.touch-device .tutorial{display:none}body.touch-device .region-toast{font-size:24px}body.touch-device .region-toast small{font-size:10px}body.touch-device .notice{bottom:calc(var(--touch-reserve) + env(safe-area-inset-bottom) + 8px);font-size:12px;padding:10px 14px}
+body.touch-device .title-menu{top:max(24px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left));width:calc(100% - 48px);max-width:350px}body.touch-device .eyebrow{font-size:10px;letter-spacing:1.2px}body.touch-device .title-menu h1{font-size:54px;letter-spacing:-2px;margin:18px 0 14px}body.touch-device .title-menu h1 span{font-size:64px}body.touch-device .tagline{font-size:18px;margin:12px 0}body.touch-device .description{font-size:12px;max-width:340px;margin-bottom:12px}body.touch-device .mobile-guide{display:block;font-size:12px;color:#c9d6bd;line-height:1.6;margin:0 0 16px}body.touch-device .mobile-guide span{display:none}body.touch-device .title-actions{max-width:320px}body.touch-device .button{min-height:44px;padding:11px 14px;font-size:14px}body.touch-device .button-row{gap:8px;margin:8px 0}body.touch-device .text-button{font-size:12px;padding:10px 0}body.touch-device .title-bottom{left:24px;bottom:max(14px,env(safe-area-inset-bottom));font-size:8px;letter-spacing:.5px}body.touch-device .title-bottom span:last-child{display:none}
+body.touch-device .panel{width:min(440px,calc(100% - 32px));max-height:calc(100% - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom));padding:18px;touch-action:pan-y;overscroll-behavior:contain}body.touch-device .panel h2{font-size:28px;margin:6px 0 12px}body.touch-device .panel p{font-size:13px;line-height:1.6;margin:10px 0 14px}body.touch-device .panel .button{min-height:44px;margin-top:8px;padding:10px 14px}body.touch-device .setting{font-size:14px;gap:12px;margin:14px 0;min-height:32px}body.touch-device .setting input[type=range]{width:128px;height:28px}body.touch-device .setting input[type=checkbox]{width:24px;height:24px}body.touch-device .control{font-size:12px;margin:12px 0;gap:12px}body.touch-device .mobile-controls{display:block}body.touch-device .run-stat{font-size:12px;line-height:2}body.touch-device .victory-symbol{font-size:24px}body.touch-device .rule{margin:14px 0}
+@media(orientation:portrait){body.touch-device .mobile-guide span{display:inline}body.touch-device #screen:has(.title-menu){background:linear-gradient(90deg,#10222cef,#10222c99)}}
+@media(orientation:landscape) and (max-height:520px){body.touch-device .title-menu{top:max(12px,env(safe-area-inset-top));max-width:330px}body.touch-device .title-menu h1{font-size:34px;margin:9px 0}body.touch-device .title-menu h1 span{font-size:40px}body.touch-device .title-menu .tagline{font-size:14px;margin:8px 0 10px}body.touch-device .description,body.touch-device .mobile-guide{display:none}body.touch-device .title-menu .button{min-height:44px;padding:8px 12px;font-size:13px}body.touch-device .title-menu .button-row{margin:5px 0}body.touch-device .title-menu .text-button{padding:7px 0}body.touch-device .title-bottom{font-size:7px;bottom:max(7px,env(safe-area-inset-bottom))}body.touch-device .hud-top .eyebrow{font-size:8px}body.touch-device .hud h2{font-size:16px}body.touch-device .hud-bottom{padding:4px 8px}body.touch-device .height-number strong{font-size:23px}body.touch-device .height-number small{display:none}body.touch-device .hud-stats{gap:10px}body.touch-device .hud-stats b{font-size:10px}}
+@media(max-height:360px){.stage{--touch-reserve:76px}.touch-button{height:52px;width:56px}.touch-jump{width:112px}.touch-pause{width:44px;height:44px}}
+/* Put mobile statistics above the action, leaving the landing zone unobstructed. */
+body.touch-device .hud-bottom{top:max(12px,env(safe-area-inset-top));bottom:auto;left:auto;right:max(14px,env(safe-area-inset-right));padding:0;border:0;background:none;flex-direction:column;align-items:flex-end;gap:5px}body.touch-device .height-number small{display:none}body.touch-device .hud-stats{font-size:6px;gap:10px}body.touch-device .hud-stats b{font-size:9px;margin-top:2px}
+
+@media(max-height:360px){body.touch-device .title-menu .tagline{display:none}body.touch-device .title-menu h1{font-size:28px}body.touch-device .title-menu h1 span{font-size:34px}}
+@media(max-width:360px){.touch-controls{gap:8px;padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}.touch-directions{gap:8px}.touch-button{width:52px;height:56px}.touch-jump{width:104px}.touch-pause{width:44px;height:44px}}
+@media(orientation:portrait) and (max-height:720px){body.touch-device .title-menu{top:max(16px,env(safe-area-inset-top))}body.touch-device .title-menu h1{font-size:44px;margin:10px 0}body.touch-device .title-menu h1 span{font-size:52px}body.touch-device .title-menu .tagline{font-size:16px;margin:8px 0}body.touch-device .description{display:none}body.touch-device .mobile-guide{font-size:12px;line-height:1.5;margin-bottom:12px}}
 
 </style>
 </head>
@@ -28,6 +42,11 @@
  <div class="altitude-track" aria-hidden="true"><span>✦</span><div><i id="altitude-fill"></i><b id="altitude-marker"></b></div><span>·</span></div>
  <div class="hud-bottom"><div class="height-number"><strong id="hud-height">0</strong><span>m <small>HEIGHT</small></span></div><div class="hud-stats"><span>BEST <b id="hud-best">0 m</b></span><span>TIME <b id="hud-time">00:00</b></span><span>JUMPS <b id="hud-jumps">0</b></span></div></div>
  <div id="tutorial" class="tutorial"><span><kbd>A</kbd> <kbd>D</kbd> move</span><span><kbd>SPACE</kbd> hold, then release</span><span>Choose direction as you release.</span></div>
+</div>
+<div id="touch-controls" class="touch-controls" aria-label="Touch game controls" hidden>
+ <div class="touch-directions"><button data-touch="left" class="touch-button" aria-label="Move left" aria-pressed="false">◀</button><button data-touch="right" class="touch-button" aria-label="Move right" aria-pressed="false">▶</button></div>
+ <button id="touch-pause" class="touch-button touch-pause" aria-label="Pause game">Ⅱ</button>
+ <button data-touch="jump" class="touch-button touch-jump" aria-label="Hold to charge jump, release to jump" aria-pressed="false"><span>JUMP</span><small>HOLD · RELEASE</small><i aria-hidden="true"></i></button>
 </div>
 <div id="screen" class="screen" aria-live="off"></div>
 <div id="notice" class="notice" role="status" hidden></div>
@@ -44,7 +63,7 @@ JT.Config = (()=>{const areaCount=50;return Object.freeze({
   version:1, saveKey:'jump-tower.save.v1', settingsKey:'jump-tower.settings.v1'
 });})();
 // View dimensions can change without changing the world or simulation.
-JT.View = {width:JT.Config.width,height:JT.Config.height};
+JT.View = {width:JT.Config.width,height:JT.Config.height,safeBottom:0};
 JT.Util = {
   clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),
   time(seconds){ const s=Math.floor(seconds); return (Math.floor(s/3600)?Math.floor(s/3600)+':':'')+String(Math.floor(s/60)%60).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); },
@@ -326,9 +345,21 @@ JT.AudioManager=AudioManager;
 <script>
 'use strict';
 JT.Camera=class{
- constructor(){this.y=JT.Config.worldHeight-JT.View.height;this.previous=this.y;}
- snap(p){this.y=JT.Util.clamp(p.y-JT.View.height*0.56,0,JT.Config.worldHeight-JT.View.height);this.previous=this.y;}
- tick(p,dt){this.previous=this.y;const target=JT.Util.clamp(p.y-JT.View.height*(p.vy>150?0.32:0.57),0,JT.Config.worldHeight-JT.View.height);this.y+=(target-this.y)*(1-Math.exp(-dt*7));}
+ constructor(){this.y=this.maxY();this.previous=this.y;}
+ visibleHeight(){return Math.max(60,JT.View.height-(JT.View.safeBottom||0));}
+ maxY(){
+  const height=this.visibleHeight();
+  const bottom=JT.View.safeBottom?JT.Config.floor+Math.min(60,Math.max(16,height*0.15)):JT.Config.worldHeight;
+  return Math.max(0,bottom-height);
+ }
+ snap(p){this.y=JT.Util.clamp(p.y-this.visibleHeight()*0.56,0,this.maxY());this.previous=this.y;}
+ tick(p,dt){
+  this.previous=this.y;const height=this.visibleHeight();
+  const target=JT.Util.clamp(p.y-height*(p.vy>150?0.32:0.57),0,this.maxY());
+  // Short landscape views need a faster camera to keep terminal-speed falls visible.
+  const rate=Math.max(7,JT.Config.maxFall/Math.max(24,height*0.36));
+  this.y+=(target-this.y)*(1-Math.exp(-dt*rate));
+ }
 };
 
 </script>
@@ -449,7 +480,7 @@ class Renderer{
   g.fillStyle='#101a29';g.globalAlpha=0.18;g.fillRect(0,0,480,6);g.fillRect(0,JT.View.height-6,480,6);g.globalAlpha=1;
  }
  title(dt){
-  this.time+=dt;const g=this.ctx;g.save();g.scale(1,JT.View.height/300);
+  this.time+=dt;const g=this.ctx;g.fillStyle='#152630';g.fillRect(0,0,480,JT.View.height);g.save();const scale=Math.min(1,JT.View.height/300);g.translate(480*(1-scale),Math.max(0,JT.View.height-300));g.scale(scale,scale);
   this.rect(0,0,480,300,'#152630');
   this.rect(0,200,480,100,'#20343a');
   // Pixel moon and original impossible-looking (decorative) tower silhouette.
@@ -485,20 +516,21 @@ class UI{
  button(label,action,primary=false,disabled=false){return `<button class="button${primary?' primary':''}" data-action="${action}" ${disabled?'disabled':''}><span>${label}</span><span class="arrow" aria-hidden="true">${primary?'↗':'›'}</span></button>`;}
  show(page){
   this.page=page;const g=this.game,s=g.session;
+  g.touch.show(!page&&s.mode==='playing');
   this.screen.classList.toggle('shaded',page!=='menu'&&page!=='');
-  if(!page){this.screen.innerHTML='';this.hud.hidden=!g.settings.hud;g.canvas.focus({preventScroll:true});return;}
+  if(!page){this.screen.innerHTML='';this.hud.hidden=!g.settings.hud;if(!g.touch.enabled)g.canvas.focus({preventScroll:true});return;}
   this.hud.hidden=true;
   const btn=(...args)=>this.button(...args),back=btn('Back','back');let html='';
   if(page==='menu'){
    const saved=g.saved;
-   html=`<div class="title-menu"><div class="eyebrow">50 AREAS · ONE UNBROKEN CLIMB</div><h1>JUMP<span>TOWER</span></h1><p class="tagline">Carry a little light a long way.</p><p class="description">An unforgiving journey above the clouds.</p><div class="title-actions">${btn('Start game','start',!saved)}${saved?btn('Continue <small>· '+U.height(saved.player.y)+' m</small>','continue',true):btn('Continue','continue',false,true)}<div class="button-row">${btn('Settings','settings')}${btn('Controls','controls')}</div><button class="text-button" data-action="reset" ${saved?'':'disabled'}>Reset progress</button></div></div><div class="title-bottom"><span>NO CHECKPOINTS. EVERY STEP IS YOURS.</span><span>VOL. 01 / THE LANTERN COURIER</span></div>`;
+   html=`<div class="title-menu"><div class="eyebrow">50 AREAS · ONE UNBROKEN CLIMB</div><h1>JUMP<span>TOWER</span></h1><p class="tagline">Carry a little light a long way.</p><p class="description">An unforgiving journey above the clouds.</p><p class="mobile-guide">Touch controls available.<span> Turn your phone sideways for the best view.</span></p><div class="title-actions">${btn('Start game','start',!saved)}${saved?btn('Continue <small>· '+U.height(saved.player.y)+' m</small>','continue',true):btn('Continue','continue',false,true)}<div class="button-row">${btn('Settings','settings')}${btn('Controls','controls')}</div><button class="text-button" data-action="reset" ${saved?'':'disabled'}>Reset progress</button></div></div><div class="title-bottom"><span>NO CHECKPOINTS. EVERY STEP IS YOURS.</span><span>VOL. 01 / THE LANTERN COURIER</span></div>`;
   }else if(page==='paused'){
    html=`<div class="panel"><div class="eyebrow">TAKE A BREATH</div><h2>The tower can wait.</h2><p>${JT.World.getRegion(s.player.y).name} · ${U.height(s.player.y)} m<br>Your journey is saved on this device.</p>${btn('Resume journey','resume',true)}${btn('Settings','settings')}${btn('Controls','controls')}${btn('Restart from the village','restart')}${btn('Return to main menu','menu')}</div>`;
   }else if(page==='settings'){
    const settings=g.settings;
    html=`<div class="panel"><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2>Settings</h2><label class="setting">Sound effects <input aria-label="Sound effects volume" data-setting="sound" type="range" min="0" max="1" step="0.05" value="${settings.sound}"></label><label class="setting">Ambient music <input aria-label="Music volume" data-setting="music" type="range" min="0" max="1" step="0.05" value="${settings.music}"></label><div class="rule"></div>${[['hud','Show HUD · H'],['particles','Ambient particles'],['shake','Landing shake']].map(([k,label])=>`<label class="setting">${label}<input data-setting="${k}" type="checkbox" ${settings[k]?'checked':''}></label>`).join('')}<p>Settings and progress stay in your browser. Audio begins after your first interaction.</p>${back}</div>`;
   }else if(page==='controls'){
-   html=`<div class="panel"><div class="eyebrow">THE ART OF THE ASCENT</div><h2>A leap of faith.</h2><div class="control"><span>Move / choose direction</span><span><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd></span></div><div class="control"><span>Charge / release to jump</span><kbd>SPACE</kbd></div><div class="control"><span>Pause / resume</span><kbd>ESC</kbd></div><div class="control"><span>Restart · with confirmation</span><kbd>R</kbd></div><div class="control"><span>Hide / show HUD</span><kbd>H</kbd></div><p class="tip">Hold Space while standing still. Release with a direction for a long jump; release with neither for a vertical jump. Your momentum is fixed in the air.</p><p>A full charge takes 0.72 seconds. You can hold it as long as you need. No checkpoints, no lost lives. If you fall, keep climbing.</p>${back}</div>`;
+   html=`<div class="panel"><div class="eyebrow">THE ART OF THE ASCENT</div><h2>A leap of faith.</h2><div class="control"><span>Move / choose direction</span><span><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd></span></div><div class="control"><span>Charge / release to jump</span><kbd>SPACE</kbd></div><div class="control"><span>Pause / resume</span><kbd>ESC</kbd></div><div class="control"><span>Restart · with confirmation</span><kbd>R</kbd></div><div class="control"><span>Hide / show HUD</span><kbd>H</kbd></div><p class="mobile-controls">On touch screens, hold ◀ or ▶ with one finger. Hold JUMP with another finger, then release JUMP to launch. Use Ⅱ to pause.</p><p class="tip">Hold Space while standing still. Release with a direction for a long jump; release with neither for a vertical jump. Your momentum is fixed in the air.</p><p>A full charge takes 0.72 seconds. You can hold it as long as you need. No checkpoints, no lost lives. If you fall, keep climbing.</p>${back}</div>`;
   }else if(page==='confirm'){
    const reset=this.confirmKind==='reset';
    html=`<div class="panel"><div class="eyebrow">A FRESH BEGINNING</div><h2>${reset?'Let this journey go?':'Back to the village?'}</h2><p>${reset?'This removes your saved journey. Your settings stay.':'This replaces your saved journey and resets your time, jumps and height.'} There is no undo.</p>${btn(reset?'Erase saved progress':'Restart journey','confirm',true)}${btn('Keep my journey','cancel')}</div>`;
@@ -506,7 +538,7 @@ class UI{
    html=`<div class="panel victory-panel"><div class="victory-symbol">✦</div><div class="eyebrow">THE LAST LIGHT IS LIT</div><h2>You carried it home.</h2><p>Every fall. Every leap. All yours.</p><div class="rule"></div>${[['COMPLETION TIME',U.time(s.stats.time)],['JUMPS',s.stats.jumps],['TOTAL FALLS',s.stats.falls],['HIGHEST POINT',Math.round(s.stats.highest)+' m']].map(([k,v])=>`<div class="run-stat"><span>${k}</span><strong>${v}</strong></div>`).join('')}<div class="rule"></div>${btn('Carry the light again','restart',true)}${btn('Return to main menu','menu')}</div>`;
   }
   this.screen.innerHTML=html;
-  requestAnimationFrame(()=>{const el=this.screen.querySelector('button:not(:disabled),input');if(el)el.focus({preventScroll:true});});
+  requestAnimationFrame(()=>{const el=this.screen.querySelector('button:not(:disabled),input');if(el&&!g.touch.enabled)el.focus({preventScroll:true});});
  }
  action(action){const g=this.game;
   if(action==='start'){if(g.saved){this.confirmKind='restart';this.confirmReturn='menu';this.show('confirm');}else g.start();}
@@ -523,6 +555,7 @@ class UI{
   }
  }
  escape(){if(this.page==='settings'||this.page==='controls')this.show(this.returnTo);else if(this.page==='confirm')this.show(this.confirmReturn);else if(this.game.session.mode==='playing')this.game.pause();else if(this.page==='paused')this.game.resume();}
+ resetRegion(){clearTimeout(this.toastTimer);this.lastArea=-1;this.lastRegion=-1;$('region-toast').classList.remove('visible');$('region-toast').textContent='';}
  updateHud(){const g=this.game,s=g.session,p=s.player,a=JT.World.getArea(p.y),r=JT.World.regions[a.region];
   this.hud.hidden=s.mode!=='playing'||!g.settings.hud;
   if(a.id!==this.lastArea){$('hud-area').textContent=String(a.id+1).padStart(2,'0')+' / '+a.name.toUpperCase();this.lastArea=a.id;}
@@ -539,16 +572,68 @@ JT.UI=UI;
 <script>
 'use strict';
 (function(){
+// Pointer IDs, rather than a single pressed flag, allow direction + jump multitouch.
+JT.TouchControls=class{
+ constructor(game){
+  this.game=game;this.root=document.getElementById('touch-controls');this.pointers=new Map();this.lastCharge=0;
+  this.buttons=[...this.root.querySelectorAll('[data-touch]')];
+  this.enabled=matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
+  document.body.classList.toggle('touch-device',this.enabled);
+  this.root.addEventListener('pointerdown',e=>this.down(e));
+  this.root.addEventListener('pointerup',e=>this.up(e));
+  this.root.addEventListener('pointercancel',e=>this.cancel(e));
+  this.root.addEventListener('lostpointercapture',e=>this.cancel(e));
+  this.root.addEventListener('contextmenu',e=>e.preventDefault());
+  document.getElementById('touch-pause').onclick=()=>game.pause();
+ }
+ held(action){for(const item of this.pointers.values())if(item.action===action)return true;return false;}
+ down(e){
+  const button=e.target.closest('[data-touch]');
+  if(!button||this.game.session.mode!=='playing'||(e.pointerType==='mouse'&&e.button!==0))return;
+  e.preventDefault();this.game.audio.unlock();
+  const action=button.dataset.touch,alreadyHeld=this.held(action);
+  this.pointers.set(e.pointerId,{action,button});
+  button.setPointerCapture(e.pointerId);button.classList.add('pressed');button.setAttribute('aria-pressed','true');
+  if(action==='jump'&&!alreadyHeld&&!this.game.keys.has('Space'))this.game.input.press=true;
+ }
+ up(e){
+  const item=this.pointers.get(e.pointerId);if(!item)return;e.preventDefault();
+  // Sample the launch direction before any other finger can be lifted this frame.
+  const direction=this.game.direction();this.pointers.delete(e.pointerId);
+  if(!this.held(item.action)){item.button.classList.remove('pressed');item.button.setAttribute('aria-pressed','false');}
+  if(item.button.hasPointerCapture(e.pointerId))item.button.releasePointerCapture(e.pointerId);
+  if(item.action==='jump'&&!this.held('jump')&&!this.game.keys.has('Space')&&this.game.session.mode==='playing'){
+   this.game.input.release=true;this.game.input.releaseDir=direction;
+  }
+ }
+ cancel(e){if(this.pointers.has(e.pointerId))this.game.cancelCharge();}
+ clear(){
+  const pending=[...this.pointers.entries()];this.pointers.clear();
+  for(const [id,item] of pending)if(item.button.hasPointerCapture(id))item.button.releasePointerCapture(id);
+  for(const button of this.buttons){button.classList.remove('pressed');button.setAttribute('aria-pressed','false');}
+  this.root.style.setProperty('--charge','0%');this.lastCharge=0;
+ }
+ show(playing){this.root.hidden=!this.enabled||!playing;}
+ update(player){if(this.root.hidden)return;const charge=player.charging?Math.round(player.charge/JT.Config.maxCharge*100):0;if(charge!==this.lastCharge){this.root.style.setProperty('--charge',charge+'%');this.lastCharge=charge;}}
+};
+})();
+
+</script>
+<script>
+'use strict';
+(function(){
 const C=JT.Config;
 class Game{
  constructor(){
   this.canvas=document.getElementById('game');this.settings=JT.Save.loadSettings();if(globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)this.settings.shake=false;
   this.session=new JT.Session();this.camera=new JT.Camera();this.renderer=new JT.Renderer(this.canvas,this.settings);this.audio=new JT.AudioManager(this.settings);this.saved=JT.Save.load();
-  this.keys=new Set();this.input={dir:0,press:false,release:false,releaseDir:0};this.last=0;this.accumulator=0;this.saveClock=0;this.hudClock=0;this.storageWarned=false;this.ui=new JT.UI(this);
+  this.keys=new Set();this.input={dir:0,press:false,release:false,releaseDir:0};this.last=0;this.accumulator=0;this.saveClock=0;this.hudClock=0;this.storageWarned=false;this.touch=new JT.TouchControls(this);this.ui=new JT.UI(this);
   this.ui.show('menu');this.resize();this.bind();this.frame=this.frame.bind(this);requestAnimationFrame(this.frame);
  }
  bind(){
   addEventListener('resize',()=>this.resize());
+  if(globalThis.visualViewport)visualViewport.addEventListener('resize',()=>this.resize());
+  if(globalThis.screen.orientation)screen.orientation.addEventListener('change',()=>{if(this.session.mode==='playing')this.pause();});
   addEventListener('keydown',e=>{
    if(e.target.matches('input')&&e.code!=='Escape')return;
    if(['Space','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.code))e.preventDefault();
@@ -560,25 +645,44 @@ class Game{
    }
    if(this.session.mode!=='playing')return;
    this.audio.unlock();this.keys.add(e.code);
-   if(e.code==='Space')this.input.press=true;
+   if(e.code==='Space'&&!this.touch.held('jump'))this.input.press=true;
   });
-  addEventListener('keyup',e=>{this.keys.delete(e.code);if(e.code==='Space'&&this.session.mode==='playing'){this.input.release=true;this.input.releaseDir=this.direction();}});
+  addEventListener('keyup',e=>{this.keys.delete(e.code);if(e.code==='Space'&&!this.touch.held('jump')&&this.session.mode==='playing'){this.input.release=true;this.input.releaseDir=this.direction();}});
   addEventListener('blur',()=>{if(this.session.mode==='playing')this.pause();this.clearInput();});
   document.addEventListener('visibilitychange',()=>{if(document.hidden){if(this.session.mode==='playing')this.pause();this.audio.suspend();}this.last=0;this.accumulator=0;});
   addEventListener('pagehide',()=>{if(this.session.mode!=='menu')this.save();});
  }
  resize(){
-  // Keep pixels square and show the whole shaft; taller windows reveal more world.
-  const height=Math.max(1,Math.round(C.width*innerHeight/innerWidth));
-  JT.View.height=height;this.canvas.height=height;this.renderer.ctx.imageSmoothingEnabled=false;
-  document.getElementById('stage').style.setProperty('--unit',Math.min(innerWidth/C.width,innerHeight/C.height)+'px');
-  this.camera.y=JT.Util.clamp(this.camera.y,0,Math.max(0,C.worldHeight-height));this.camera.previous=this.camera.y;
+  // A browser toolbar resize preserves play; an aspect/orientation change pauses safely.
+  const viewport=globalThis.visualViewport,width=viewport?viewport.width:innerWidth,height=viewport?viewport.height:innerHeight;
+  const aspect=width>height?'landscape':'portrait';
+  if(this.aspect&&this.aspect!==aspect&&this.session.mode==='playing')this.pause();
+  this.aspect=aspect;
+  const oldVisible=this.camera.visibleHeight();
+  const stage=document.getElementById('stage');stage.style.width=width+'px';stage.style.height=height+'px';
+  stage.style.setProperty('--unit',Math.min(width/C.width,height/C.height)+'px');
+  const strip=this.touch.enabled?document.getElementById('touch-controls'):null;
+  // Measure the strip even in a menu, so the camera is ready before Start/Resume.
+  const reserve=strip?(parseFloat(getComputedStyle(stage).getPropertyValue('--touch-reserve'))||84)+Math.max(0,parseFloat(getComputedStyle(strip).paddingBottom)-12):0;
+  JT.View.safeBottom=reserve*C.width/width;
+  JT.View.height=Math.max(1,Math.round(C.width*height/width));
+  if(this.canvas.height!==JT.View.height){this.canvas.height=JT.View.height;this.renderer.ctx.imageSmoothingEnabled=false;}
+  if(this.touch.enabled&&this.lastAspect&&this.lastAspect!==aspect)this.camera.snap(this.session.player);
+  else if(this.touch.enabled)this.camera.y=this.session.player.y-(this.session.player.y-this.camera.y)*this.camera.visibleHeight()/oldVisible;
+  this.lastAspect=aspect;
+  this.camera.y=JT.Util.clamp(this.camera.y,0,this.camera.maxY());this.camera.previous=this.camera.y;
  }
 
- direction(){return (this.keys.has('KeyD')||this.keys.has('ArrowRight')?1:0)-(this.keys.has('KeyA')||this.keys.has('ArrowLeft')?1:0);}
- clearInput(){this.keys.clear();this.input.dir=0;this.input.press=false;this.input.release=false;this.audio.stopCharge();}
- start(){this.clearInput();this.session.restart();this.camera.snap(this.session.player);this.renderer.oldX=this.session.player.x;this.renderer.oldY=this.session.player.y;this.renderer.particles.length=0;this.ui.lastRegion=-1;this.ui.lastArea=-1;this.accumulator=0;this.saveClock=0;this.audio.unlock();this.ui.show('');this.ui.updateHud();this.save();}
- continue(){if(!this.saved)return;this.clearInput();this.session.load(JT.Save.valid({version:C.version,player:this.saved.player,stats:this.saved.stats,completed:this.saved.completed}));this.camera.snap(this.session.player);this.renderer.oldX=this.session.player.x;this.renderer.oldY=this.session.player.y;this.ui.lastArea=-1;this.ui.lastRegion=-1;this.accumulator=0;this.audio.unlock();this.ui.show(this.session.completed?'victory':'');this.ui.updateHud();}
+ direction(){
+  const right=this.keys.has('KeyD')||this.keys.has('ArrowRight')||this.touch.held('right');
+  const left=this.keys.has('KeyA')||this.keys.has('ArrowLeft')||this.touch.held('left');
+  return Number(right)-Number(left);
+ }
+ clearInput(){this.keys.clear();this.touch.clear();this.input.dir=0;this.input.press=false;this.input.release=false;this.audio.stopCharge();}
+ cancelCharge(){this.clearInput();this.session.player.charging=false;this.session.player.charge=0;}
+
+ start(){this.clearInput();this.session.restart();this.camera.snap(this.session.player);this.renderer.oldX=this.session.player.x;this.renderer.oldY=this.session.player.y;this.renderer.particles.length=0;this.ui.resetRegion();this.accumulator=0;this.saveClock=0;this.audio.unlock();this.ui.show('');this.ui.updateHud();this.save();}
+ continue(){if(!this.saved)return;this.clearInput();this.session.load(JT.Save.valid({version:C.version,player:this.saved.player,stats:this.saved.stats,completed:this.saved.completed}));this.camera.snap(this.session.player);this.renderer.oldX=this.session.player.x;this.renderer.oldY=this.session.player.y;this.ui.resetRegion();this.accumulator=0;this.audio.unlock();this.ui.show(this.session.completed?'victory':'');this.ui.updateHud();}
  pause(){if(this.session.pause()){this.clearInput();this.save();this.ui.show('paused');}}
  resume(){if(this.session.resume()){this.clearInput();this.accumulator=0;this.last=0;this.audio.unlock();this.ui.show('');}}
  menu(){if(this.session.mode!=='menu')this.save();this.clearInput();this.session.mode='menu';this.saved=JT.Save.load()||this.saved;this.ui.show('menu');}
@@ -602,6 +706,7 @@ class Game{
    if(this.saveClock>=C.saveInterval){this.saveClock=0;this.save();}
    if(this.hudClock>0.1){this.hudClock=0;this.ui.updateHud();}
   }
+  this.touch.update(p);
   if(s.mode==='menu')this.renderer.title(dt);
   else this.renderer.render(s,this.camera,s.mode==='playing'?this.accumulator/C.step:1,s.mode==='playing'||s.completed?dt:0);
  }

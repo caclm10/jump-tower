@@ -114,7 +114,7 @@ class Renderer{
   g.fillStyle='#101a29';g.globalAlpha=0.18;g.fillRect(0,0,480,6);g.fillRect(0,JT.View.height-6,480,6);g.globalAlpha=1;
  }
  title(dt){
-  this.time+=dt;const g=this.ctx;g.save();g.scale(1,JT.View.height/300);
+  this.time+=dt;const g=this.ctx;g.fillStyle='#152630';g.fillRect(0,0,480,JT.View.height);g.save();const scale=Math.min(1,JT.View.height/300);g.translate(480*(1-scale),Math.max(0,JT.View.height-300));g.scale(scale,scale);
   this.rect(0,0,480,300,'#152630');
   this.rect(0,200,480,100,'#20343a');
   // Pixel moon and original impossible-looking (decorative) tower silhouette.

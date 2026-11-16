@@ -7,6 +7,7 @@
     "test": "node --test tests/run.js",
     "validate": "node tools/validate-levels.js",
     "build": "node tools/build.js",
-    "test:browser": "node tests/browser.cjs"
+    "test:browser": "node tests/browser.cjs",
+    "test:mobile": "node tests/mobile.cjs"
   }
 }

@@ -1,0 +1,15 @@
+{
+  "browser": "159.0.8154.6",
+  "mode": "Chromium mobile emulation with CDP multitouch; not physical iOS/Android hardware",
+  "offline": true,
+  "checks": [
+    "index.html: real multitouch jump and landing, 44px targets, pause/settings, HUD-independent controls, pointer cancellation, duplicate fingers",
+    "dist/index.html: real multitouch jump and landing, 44px targets, pause/settings, HUD-independent controls, pointer cancellation, duplicate fingers",
+    "rotation pauses safely, clears held touches and charge, and preserves world position and jump count",
+    "six phone viewports keep the full shaft and touch targets visible; maximum jump and long terminal fall stay above controls",
+    "browser-height changes preserve the player camera anchor without moving the player",
+    "portrait menus work by touch and explain landscape and multitouch controls"
+  ],
+  "errors": [],
+  "externalRequests": []
+}

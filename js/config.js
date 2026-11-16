@@ -8,7 +8,7 @@ JT.Config = (()=>{const areaCount=50;return Object.freeze({
   version:1, saveKey:'jump-tower.save.v1', settingsKey:'jump-tower.settings.v1'
 });})();
 // View dimensions can change without changing the world or simulation.
-JT.View = {width:JT.Config.width,height:JT.Config.height};
+JT.View = {width:JT.Config.width,height:JT.Config.height,safeBottom:0};
 JT.Util = {
   clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),
   time(seconds){ const s=Math.floor(seconds); return (Math.floor(s/3600)?Math.floor(s/3600)+':':'')+String(Math.floor(s/60)%60).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); },

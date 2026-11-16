@@ -4,7 +4,7 @@
 
 ## Play now — no installation
 
-Open **`dist/index.html`** in a modern desktop browser. That one file contains the entire game. You can copy it to another computer, disconnect the internet, and double-click it. No server, Node.js, account, downloads, or network connection is needed to play.
+Open **`dist/index.html`** in a modern browser. Desktop keyboard and mobile touch controls are supported. That one file contains the entire game. You can copy it to another computer, disconnect the internet, and double-click it. No server, Node.js, account, downloads, or network connection is needed to play.
 
 The root `index.html` also works directly from `file://`, provided its `js/` folder and `style.css` stay beside it. Use the same file location and browser to keep access to your save. Local-file storage policies differ between browsers; if storage is denied, the game displays a notice and remains playable for the current session.
 
@@ -23,6 +23,16 @@ The root `index.html` also works directly from `file://`, provided its `js/` fol
 Release Space without a direction for a vertical jump. A full charge takes **0.72 seconds** and can be held indefinitely. Shorter charges make shorter, lower jumps. Once airborne, horizontal momentum is locked: there is no air steering or double jump. Walls stop horizontal momentum, and platforms have solid sides and undersides. Take a run along a ledge to find a clear launch position if a platform hangs overhead.
 
 **There are no checkpoints, deaths, or automatic respawns.** Missing a ledge can drop you through several areas. Resting ledges are places to breathe, not reset points. Every lower area stays accessible. Three optional gold-rimmed routes trade narrow landings for fewer jumps.
+
+## Mobile play
+
+Touch devices show large left/right buttons and a **JUMP** button. Hold a direction with one finger, hold JUMP with another, then release JUMP to launch. Releasing the direction afterward does not change the committed jump. The Ⅱ button pauses even when the HUD is hidden. A canceled touch or interrupted gesture cancels charging instead of causing an accidental jump.
+
+**Landscape is recommended.** Portrait also works and shows the entire shaft, with a reminder on the menu; platforms and the courier are smaller. Menus, safe-area spacing, and touch targets adapt to phone screens. The camera reserves room above the touch controls and follows faster during long falls in short landscape views. Rotation pauses and clears held inputs without moving the player; tap Resume after rotating. Browser toolbar height changes preserve the camera anchor.
+
+For phones, opening the game through a static website is the most reliable entry point. Local HTML execution depends on the OS/browser: an iPhone Files preview is not equivalent to running the page in Safari. The distribution remains self-contained and makes no network requests after it is loaded. No server-side code or account is required.
+
+Mobile behavior was verified with Chromium touch emulation, including actual multi-pointer events; physical Android/iPhone and Safari testing remain unverified.
 
 ## The journey
 
@@ -65,11 +75,13 @@ Audio is synthesized locally with Web Audio: charging, jumping, landing, falling
 | `js/audio.js` | Web Audio synthesis and separate audio buses |
 | `js/save.js` | Validated localStorage persistence with safe fallbacks |
 | `js/ui.js` | Functional menus, confirmations, settings, HUD |
-| `js/game.js` | Keyboard events, fixed-step loop, interpolation, lifecycle |
+| `js/touch.js` | Pointer capture, multitouch buttons, charge cancellation |
+| `js/game.js` | Keyboard/touch input, viewport lifecycle, fixed-step loop, interpolation |
 | `tools/validate-levels.js` | Physics-based route search and continuous replay |
 | `tools/build.js` | Dependency-free single-file distribution builder |
 | `tests/run.js` | Automated physics, persistence, lifecycle, world, and offline checks |
-| `tests/browser.cjs` | Optional Playwright browser acceptance tests |
+| `tests/browser.cjs` | Optional Playwright desktop browser acceptance tests |
+| `tests/mobile.cjs` | Phone viewport, multitouch, interruption, rotation, and camera checks |
 | `tests/route.json` | Reproducible input sequence for the complete main-route replay |
 | `tests/*-report.json` | Executed level and browser validation results |
 | `dist/index.html` | Ready-to-play, self-contained distribution |
@@ -109,7 +121,7 @@ node tools/build.js
 
 Equivalent commands are `npm test`, `npm run validate`, and `npm run build`. They require no `npm install`.
 
-The builder inlines the local CSS and scripts into `dist/index.html`. The finished HTML is about **59 KB**, well below the 2 MB preferred budget. Distribute that file directly.
+The builder inlines the local CSS and scripts into `dist/index.html`. The finished HTML is about **70 KB**, well below the 2 MB preferred budget. Distribute that file directly.
 
 The optional browser suite requires a development-only Playwright installation and a Chromium binary:
 
@@ -117,6 +129,7 @@ The optional browser suite requires a development-only Playwright installation a
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 node tests/browser.cjs
+node tests/mobile.cjs
 ```
 
 Minimal Linux environments may also need Chromium's system libraries. `PLAYWRIGHT_MODULE` can point to an existing Playwright installation, `PLAYWRIGHT_BROWSERS_PATH` can select a browser cache, and `QA_OUTPUT` selects the screenshot directory (default `/tmp/jump-tower-browser-qa`). None of these tools ship in the offline game.

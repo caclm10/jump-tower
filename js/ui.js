@@ -10,20 +10,21 @@ class UI{
  button(label,action,primary=false,disabled=false){return `<button class="button${primary?' primary':''}" data-action="${action}" ${disabled?'disabled':''}><span>${label}</span><span class="arrow" aria-hidden="true">${primary?'↗':'›'}</span></button>`;}
  show(page){
   this.page=page;const g=this.game,s=g.session;
+  g.touch.show(!page&&s.mode==='playing');
   this.screen.classList.toggle('shaded',page!=='menu'&&page!=='');
-  if(!page){this.screen.innerHTML='';this.hud.hidden=!g.settings.hud;g.canvas.focus({preventScroll:true});return;}
+  if(!page){this.screen.innerHTML='';this.hud.hidden=!g.settings.hud;if(!g.touch.enabled)g.canvas.focus({preventScroll:true});return;}
   this.hud.hidden=true;
   const btn=(...args)=>this.button(...args),back=btn('Back','back');let html='';
   if(page==='menu'){
    const saved=g.saved;
-   html=`<div class="title-menu"><div class="eyebrow">50 AREAS · ONE UNBROKEN CLIMB</div><h1>JUMP<span>TOWER</span></h1><p class="tagline">Carry a little light a long way.</p><p class="description">An unforgiving journey above the clouds.</p><div class="title-actions">${btn('Start game','start',!saved)}${saved?btn('Continue <small>· '+U.height(saved.player.y)+' m</small>','continue',true):btn('Continue','continue',false,true)}<div class="button-row">${btn('Settings','settings')}${btn('Controls','controls')}</div><button class="text-button" data-action="reset" ${saved?'':'disabled'}>Reset progress</button></div></div><div class="title-bottom"><span>NO CHECKPOINTS. EVERY STEP IS YOURS.</span><span>VOL. 01 / THE LANTERN COURIER</span></div>`;
+   html=`<div class="title-menu"><div class="eyebrow">50 AREAS · ONE UNBROKEN CLIMB</div><h1>JUMP<span>TOWER</span></h1><p class="tagline">Carry a little light a long way.</p><p class="description">An unforgiving journey above the clouds.</p><p class="mobile-guide">Touch controls available.<span> Turn your phone sideways for the best view.</span></p><div class="title-actions">${btn('Start game','start',!saved)}${saved?btn('Continue <small>· '+U.height(saved.player.y)+' m</small>','continue',true):btn('Continue','continue',false,true)}<div class="button-row">${btn('Settings','settings')}${btn('Controls','controls')}</div><button class="text-button" data-action="reset" ${saved?'':'disabled'}>Reset progress</button></div></div><div class="title-bottom"><span>NO CHECKPOINTS. EVERY STEP IS YOURS.</span><span>VOL. 01 / THE LANTERN COURIER</span></div>`;
   }else if(page==='paused'){
    html=`<div class="panel"><div class="eyebrow">TAKE A BREATH</div><h2>The tower can wait.</h2><p>${JT.World.getRegion(s.player.y).name} · ${U.height(s.player.y)} m<br>Your journey is saved on this device.</p>${btn('Resume journey','resume',true)}${btn('Settings','settings')}${btn('Controls','controls')}${btn('Restart from the village','restart')}${btn('Return to main menu','menu')}</div>`;
   }else if(page==='settings'){
    const settings=g.settings;
    html=`<div class="panel"><div class="eyebrow">MAKE YOURSELF AT HOME</div><h2>Settings</h2><label class="setting">Sound effects <input aria-label="Sound effects volume" data-setting="sound" type="range" min="0" max="1" step="0.05" value="${settings.sound}"></label><label class="setting">Ambient music <input aria-label="Music volume" data-setting="music" type="range" min="0" max="1" step="0.05" value="${settings.music}"></label><div class="rule"></div>${[['hud','Show HUD · H'],['particles','Ambient particles'],['shake','Landing shake']].map(([k,label])=>`<label class="setting">${label}<input data-setting="${k}" type="checkbox" ${settings[k]?'checked':''}></label>`).join('')}<p>Settings and progress stay in your browser. Audio begins after your first interaction.</p>${back}</div>`;
   }else if(page==='controls'){
-   html=`<div class="panel"><div class="eyebrow">THE ART OF THE ASCENT</div><h2>A leap of faith.</h2><div class="control"><span>Move / choose direction</span><span><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd></span></div><div class="control"><span>Charge / release to jump</span><kbd>SPACE</kbd></div><div class="control"><span>Pause / resume</span><kbd>ESC</kbd></div><div class="control"><span>Restart · with confirmation</span><kbd>R</kbd></div><div class="control"><span>Hide / show HUD</span><kbd>H</kbd></div><p class="tip">Hold Space while standing still. Release with a direction for a long jump; release with neither for a vertical jump. Your momentum is fixed in the air.</p><p>A full charge takes 0.72 seconds. You can hold it as long as you need. No checkpoints, no lost lives. If you fall, keep climbing.</p>${back}</div>`;
+   html=`<div class="panel"><div class="eyebrow">THE ART OF THE ASCENT</div><h2>A leap of faith.</h2><div class="control"><span>Move / choose direction</span><span><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd></span></div><div class="control"><span>Charge / release to jump</span><kbd>SPACE</kbd></div><div class="control"><span>Pause / resume</span><kbd>ESC</kbd></div><div class="control"><span>Restart · with confirmation</span><kbd>R</kbd></div><div class="control"><span>Hide / show HUD</span><kbd>H</kbd></div><p class="mobile-controls">On touch screens, hold ◀ or ▶ with one finger. Hold JUMP with another finger, then release JUMP to launch. Use Ⅱ to pause.</p><p class="tip">Hold Space while standing still. Release with a direction for a long jump; release with neither for a vertical jump. Your momentum is fixed in the air.</p><p>A full charge takes 0.72 seconds. You can hold it as long as you need. No checkpoints, no lost lives. If you fall, keep climbing.</p>${back}</div>`;
   }else if(page==='confirm'){
    const reset=this.confirmKind==='reset';
    html=`<div class="panel"><div class="eyebrow">A FRESH BEGINNING</div><h2>${reset?'Let this journey go?':'Back to the village?'}</h2><p>${reset?'This removes your saved journey. Your settings stay.':'This replaces your saved journey and resets your time, jumps and height.'} There is no undo.</p>${btn(reset?'Erase saved progress':'Restart journey','confirm',true)}${btn('Keep my journey','cancel')}</div>`;
@@ -31,7 +32,7 @@ class UI{
    html=`<div class="panel victory-panel"><div class="victory-symbol">✦</div><div class="eyebrow">THE LAST LIGHT IS LIT</div><h2>You carried it home.</h2><p>Every fall. Every leap. All yours.</p><div class="rule"></div>${[['COMPLETION TIME',U.time(s.stats.time)],['JUMPS',s.stats.jumps],['TOTAL FALLS',s.stats.falls],['HIGHEST POINT',Math.round(s.stats.highest)+' m']].map(([k,v])=>`<div class="run-stat"><span>${k}</span><strong>${v}</strong></div>`).join('')}<div class="rule"></div>${btn('Carry the light again','restart',true)}${btn('Return to main menu','menu')}</div>`;
   }
   this.screen.innerHTML=html;
-  requestAnimationFrame(()=>{const el=this.screen.querySelector('button:not(:disabled),input');if(el)el.focus({preventScroll:true});});
+  requestAnimationFrame(()=>{const el=this.screen.querySelector('button:not(:disabled),input');if(el&&!g.touch.enabled)el.focus({preventScroll:true});});
  }
  action(action){const g=this.game;
   if(action==='start'){if(g.saved){this.confirmKind='restart';this.confirmReturn='menu';this.show('confirm');}else g.start();}
@@ -48,6 +49,7 @@ class UI{
   }
  }
  escape(){if(this.page==='settings'||this.page==='controls')this.show(this.returnTo);else if(this.page==='confirm')this.show(this.confirmReturn);else if(this.game.session.mode==='playing')this.game.pause();else if(this.page==='paused')this.game.resume();}
+ resetRegion(){clearTimeout(this.toastTimer);this.lastArea=-1;this.lastRegion=-1;$('region-toast').classList.remove('visible');$('region-toast').textContent='';}
  updateHud(){const g=this.game,s=g.session,p=s.player,a=JT.World.getArea(p.y),r=JT.World.regions[a.region];
   this.hud.hidden=s.mode!=='playing'||!g.settings.hud;
   if(a.id!==this.lastArea){$('hud-area').textContent=String(a.id+1).padStart(2,'0')+' / '+a.name.toUpperCase();this.lastArea=a.id;}
